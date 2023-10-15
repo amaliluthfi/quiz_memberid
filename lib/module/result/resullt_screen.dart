@@ -5,6 +5,7 @@ import 'package:quiz_memberid/common/widgets/space.dart';
 import 'package:quiz_memberid/core/style/app_colors.dart';
 import 'package:quiz_memberid/core/topics/data/model/topics._model.dart';
 import 'package:quiz_memberid/core/topics/topics_controller.dart';
+import 'package:share_plus/share_plus.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key});
@@ -62,7 +63,11 @@ class _ResultScreenState extends State<ResultScreen> {
               ),
             ),
             ElevatedButton(
-                onPressed: () {}, child: const Text("Share your score")),
+                onPressed: () {
+                  Share.share(
+                      "I got $correctAnswer/${questions.length}!. How about you?");
+                },
+                child: const Text("Share your score")),
             const SpaceH16(),
             const Text(
               "Your Report",

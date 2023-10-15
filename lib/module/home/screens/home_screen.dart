@@ -8,6 +8,8 @@ import 'package:quiz_memberid/core/assets/app_assets.dart';
 import 'package:quiz_memberid/core/router/route_constant.dart';
 import 'package:quiz_memberid/core/style/app_colors.dart';
 import 'package:quiz_memberid/core/topics/topics_controller.dart';
+import 'package:share_plus/share_plus.dart';
+// import 'package:share_plus/share_plus.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -81,7 +83,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TextButton.icon(
-                        onPressed: () {},
+                        onPressed: () {
+                          Share.share(
+                              "Try trivia quiz, there are many interestinf topics!");
+                        },
                         icon: const Icon(Icons.share),
                         label: const Text(
                           "Share",
