@@ -38,6 +38,7 @@ class TopicsController extends GetxController {
     question = topic.questions?[indexQuestion];
 
     if (question != null) {
+      question.selectedOption = answer;
       question.isCorrect = answer == question.correctAnswer;
       if (question.isCorrect) {
         Get.showSnackbar(GetSnackBar(

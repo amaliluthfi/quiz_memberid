@@ -38,12 +38,14 @@ class Question {
   List<String>? options;
   String? correctAnswer;
   bool isCorrect;
+  String selectedOption;
 
   Question(
       {required this.question,
       required this.options,
       required this.correctAnswer,
-      this.isCorrect = false});
+      this.isCorrect = false,
+      this.selectedOption = "not answered"});
 
   factory Question.fromJson(Map<String, dynamic> json) => Question(
         question: json["question"],
