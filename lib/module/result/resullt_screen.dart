@@ -148,9 +148,7 @@ List<PieChartSectionData> showingSections(int totalQuestion, int totalCorrect) {
         return PieChartSectionData(
           color: Colors.grey,
           value: (totalQuestion - totalCorrect) / totalQuestion,
-          title:
-              '${((totalQuestion - totalCorrect) / totalQuestion * 100).ceil()}%',
-          // radius: radius,
+          title: "",
           titleStyle: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
@@ -162,8 +160,7 @@ List<PieChartSectionData> showingSections(int totalQuestion, int totalCorrect) {
         return PieChartSectionData(
           color: Colors.green,
           value: totalCorrect / totalQuestion,
-          title: '${(totalCorrect / totalQuestion * 100).ceil()}%',
-          // radius: radius,
+          title: "",
           titleStyle: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,

@@ -65,12 +65,4 @@ class TopicsController extends GetxController {
       }
     }
   }
-
-  Stream<int> secondsPeriodic = (() async* {
-    for (int i = 0; i <= 30; i++) {
-      await Future<void>.delayed(const Duration(seconds: 1));
-
-      yield i;
-    }
-  })();
 }

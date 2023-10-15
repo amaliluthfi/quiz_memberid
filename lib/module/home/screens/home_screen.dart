@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_memberid/common/widgets/custom_button.dart';
@@ -48,7 +50,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 42),
-                CustomButton(func: () {}, text: "Play"),
+                CustomButton(
+                    func: () {
+                      Get.toNamed(RouteConstant.quiz, arguments: {
+                        "topic": controller
+                            .topics[Random().nextInt(controller.topics.length)],
+                        "indexQuestion": 0
+                      });
+                    },
+                    text: "Play"),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       foregroundColor: AppColors.secondaryColor,
