@@ -18,6 +18,28 @@ class SearchScreens extends StatelessWidget {
           backgroundColor: AppColors.backgroundColor,
           centerTitle: true,
           title: const Text("Search Topics"),
+          actions: [
+            DropdownButton(
+              padding: const EdgeInsets.all(8),
+              dropdownColor: AppColors.secondaryColor,
+              style: const TextStyle(color: Colors.white),
+              value: controller.filterDifficulty,
+              underline: const SizedBox(),
+              onChanged: (val) {
+                controller.filterDifficulty = val!;
+                controller.update();
+                controller.searchTopic();
+              },
+              items: controller.difficultyList
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+              icon: Icon(Icons.filter_alt, color: AppColors.primaryColor),
+            )
+          ],
           bottom: PreferredSize(
               preferredSize: const Size(double.maxFinite, 40),
               child: Padding(

@@ -11,6 +11,8 @@ class TopicsController extends GetxController {
   final TopicsNetwork _network = TopicsNetwork();
   final TextEditingController searcTxt = TextEditingController(text: "");
   List<Topics> resultTopics = [];
+  List<String> difficultyList = ["All", "Easy", "Medium", "Hard"];
+  String filterDifficulty = "All";
 
   @override
   void onInit() {
@@ -72,7 +74,9 @@ class TopicsController extends GetxController {
     isLoading = true;
     update();
     try {
-      var res = await _network.searchTopicsNetwork(keyword: searcTxt.text);
+      var res = await _network.searchTopicsNetwork(
+          keyword: searcTxt.text,
+          filter: filterDifficulty == "All" ? "" : filterDifficulty);
       resultTopics = res;
     } catch (e) {
       debugPrint(e.toString());

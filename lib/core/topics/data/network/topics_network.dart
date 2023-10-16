@@ -13,10 +13,13 @@ class TopicsNetwork {
     }
   }
 
-  Future<List<Topics>> searchTopicsNetwork({String? keyword}) async {
+  Future<List<Topics>> searchTopicsNetwork(
+      {String? keyword, String? filter}) async {
     try {
-      var res =
-          await _network.get(collectionName: "topics", keyword: keyword ?? "");
+      var res = await _network.get(
+          collectionName: "topics",
+          keyword: keyword ?? "",
+          filter: filter ?? "");
       return List<Topics>.from(res.map((x) => Topics.fromJson(x.data())));
     } catch (e) {
       rethrow;
