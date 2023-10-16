@@ -9,6 +9,8 @@ class TopicsController extends GetxController {
   List<Topics> topics = [];
   bool isLoading = false;
   final TopicsNetwork _network = TopicsNetwork();
+  final TextEditingController searcTxt = TextEditingController(text: "");
+  List<Topics> resultTopics = [];
 
   @override
   void onInit() {
@@ -64,5 +66,18 @@ class TopicsController extends GetxController {
         ));
       }
     }
+  }
+
+  searchTopic() async {
+    isLoading = true;
+    update();
+    try {
+      var res = await _network.searchTopicsNetwork(keyword: searcTxt.text);
+      resultTopics = res;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    isLoading = false;
+    update();
   }
 }

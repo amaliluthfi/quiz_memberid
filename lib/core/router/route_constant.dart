@@ -3,4 +3,5 @@ class RouteConstant {
   static String topics = "/topics";
   static String quiz = "/quiz";
   static String result = "/result";
+  static String search = "/seaarch";
 }

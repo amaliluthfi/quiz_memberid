@@ -28,20 +28,21 @@ class _QuizScreenState extends State<QuizScreen> {
     }
   })();
 
+  Timer? timer;
+
   @override
   void initState() {
     questions = Get.arguments["topic"].questions;
     indexQuestion = Get.arguments["indexQuestion"];
-
-    Timer(const Duration(seconds: 30), () {
-      if (Get.rawRoute?.settings.name == "/quiz") {
+    timer = Timer(const Duration(seconds: 30), () {
+      if (Get.rawRoute?.settings.name == RouteConstant.quiz) {
         if (indexQuestion < 4) {
           setState(() {
             Get.offAndToNamed(
               RouteConstant.quiz,
               arguments: {
                 "topic": Get.arguments["topic"],
-                "indexQuestion": indexQuestion
+                "indexQuestion": indexQuestion += 1
               },
             );
           });
@@ -50,8 +51,13 @@ class _QuizScreenState extends State<QuizScreen> {
         }
       }
     });
-
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -134,11 +140,10 @@ class _QuizScreenState extends State<QuizScreen> {
                             Timer(const Duration(milliseconds: 1000), () {
                               if (indexQuestion < 4) {
                                 setState(() {
-                                  indexQuestion++;
                                   Get.offAndToNamed(RouteConstant.quiz,
                                       arguments: {
                                         "topic": Get.arguments["topic"],
-                                        "indexQuestion": indexQuestion++
+                                        "indexQuestion": indexQuestion += 1
                                       });
                                 });
                               } else {
